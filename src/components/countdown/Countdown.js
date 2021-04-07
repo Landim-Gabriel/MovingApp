@@ -1,12 +1,20 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
+import { ChallengesContext } from '../../contexts/ChallengesContexts';
 
 import styles from './styles';
 
+let countdownTimeout;
+
 export default function Countdown() {
-  const [time, setTime] = useState( 25 * 60 );
-  const [active, setActive] = useState(false);
+  
+  const { startNewChallenge } = useContext(ChallengesContext);
+
+  const [time, setTime] = useState( 0.1 * 60 );
+  const [isActive, setActive] = useState(false);
+  const [hasFinshed, setHasFinished] =  useState(false);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -18,13 +26,23 @@ export default function Countdown() {
     setActive(true);
   }
 
+  function resetCountdown(){
+    clearTimeout(countdownTimeout);
+    setActive(false);
+    setTime( 0.1 * 60 );
+  }
+
   useEffect(() => {
-    if (active && time > 0) {
-      setTimeout(() => {
+    if (isActive && time > 0) {
+      countdownTimeout = setTimeout(() => {
         setTime(time - 1);
       }, 1000);
+    } else if (isActive && time == 0 ){
+      setHasFinished(true);
+      setActive(false);
+      startNewChallenge();
     }
-  }, [active, time])
+  }, [isActive, time])
 
   return (
     <View>
@@ -39,15 +57,40 @@ export default function Countdown() {
           <Text style={styles.numberRight}>{secondRight}</Text>
         </View>
       </View >
-      <TouchableHighlight
+
+      { hasFinshed ? (
+        <TouchableHighlight
+        disabled={true}
+        style={styles.countdownButton}
+        activeOpacity={0.6}
+        underlayColor="#4953B8"
+        >
+        <Text style={styles.buttonText}>Ciclo encerrado</Text>
+        </TouchableHighlight>
+      ) : (
+        <>
+           { isActive ? (
+        <TouchableHighlight
+        style={styles.countdownButton}
+        activeOpacity={0.6}
+        underlayColor="#4953B8"
+        onPress={() => {resetCountdown()}}
+      >
+        <Text style={styles.buttonText}> Abandonar ciclo</Text>
+      </TouchableHighlight>
+
+      ) : (
+        <TouchableHighlight
         style={styles.countdownButton}
         activeOpacity={0.6}
         underlayColor="#4953B8"
         onPress={() => {startCountdown()}}
       >
-        <Text style={styles.buttonText}>Iniciar um ciclo</Text>
+        <Text style={styles.buttonText}>Iniciar ciclo</Text>
       </TouchableHighlight>
-
+      )}
+        </>
+      ) }
     </View>
   );
 };
