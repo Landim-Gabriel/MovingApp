@@ -3,11 +3,23 @@ import { useContext } from 'react';
 import { View, Text, Image } from "react-native";
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import { ChallengesContext } from '../../contexts/ChallengesContexts';
+import { CountdownContext } from '../../contexts/CountdownContext';
 import styles from './styles';
 
 export default function ChallengeBox(){
 
-    const { activeChallenge, resetChallenge } = useContext(ChallengesContext);
+    const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
+    const { resetCountdown } = useContext(CountdownContext)
+
+    function handleChallengeSucceeded(){
+        completeChallenge()
+        resetCountdown()
+    }
+
+    function handleChallengeFailed(){
+        resetChallenge()
+        resetCountdown()
+    }
 
     return(
         <View style={styles.challengeBoxContainer}>
@@ -27,7 +39,7 @@ export default function ChallengeBox(){
                                 activeOpacity={0.6}
                                 underlayColor="#4953B8"
                                 style={styles.challengeFailedButton}
-                                onPress={() => {resetChallenge()}}
+                                onPress={() => {handleChallengeFailed()}}
                             >
                                 <Text style={styles.textButton}>Falhei</Text>
                             </TouchableHighlight>
@@ -37,6 +49,7 @@ export default function ChallengeBox(){
                                 activeOpacity={0.6}
                                 underlayColor="#4953B8"
                                 style={styles.challengeSucceededButton}
+                                onPress={() => {handleChallengeSucceeded()}}
                             >
                                 <Text style={styles.textButton}>Completei</Text>
                             </TouchableHighlight>

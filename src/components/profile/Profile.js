@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image } from 'react-native';
+import { ChallengesContext } from '../../contexts/ChallengesContexts';
 
 import styles from './styles';
 
 export default function Profile() {
+  const { level } = useContext(ChallengesContext)
+
   return (
       <View style={styles.profileContainer}>
         <Image
@@ -13,7 +16,7 @@ export default function Profile() {
         }}/>
         <View style={styles.profileInformation}>
           <Text style={styles.profileName}>Gabriel Landim</Text>
-          <Text Style={styles.profileLevel}>Level 1</Text>
+          <Text Style={styles.profileLevel}>Level { level }</Text>
         </View>
       </View>
   );
