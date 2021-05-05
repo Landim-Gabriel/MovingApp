@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { ChallengesContext } from "./ChallengesContexts";
+import {Accelerometer } from 'expo-sensors';
 
 export const CountdownContext = createContext({})
 let countdownTimeout;
@@ -14,11 +15,30 @@ export function CountdownProvider({children}){
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 
-    function startCountdown() {
-        setActive(true);
+    const stopped = {
+      x: 0,
+      y: 0,
+      z: 0
+    }
+
+    const [dataXYZ, setData] = useState({
+      x: 0,
+      y: 0,
+      z: 0,
+    });
+
+    function startCountdown() {   
+        Accelerometer.addListener(dataXYZ => setData(dataXYZ))
+        if ( dataXYZ['x'] !=0.00 ) {
+          setActive(true);
+          console.log(dataXYZ['x'])
+        }
       }
     
       function resetCountdown(){
+        Accelerometer.removeAllListeners()
+        setData(stopped)
+        console.log(dataXYZ['x'])
         clearTimeout(countdownTimeout);
         setActive(false);
         setTime( 0.1 * 60 );

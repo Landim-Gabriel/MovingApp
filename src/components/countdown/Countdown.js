@@ -54,7 +54,7 @@ export default function Countdown() {
         underlayColor="#4953B8"
         onPress={() => {resetCountdown()}}
       >
-        <Text style={styles.buttonText}> Abandonar ciclo</Text>
+        <Text style={styles.buttonText}>Abandonar ciclo</Text>
       </TouchableHighlight>
 
       ) : (
