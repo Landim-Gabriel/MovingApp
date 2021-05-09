@@ -1,0 +1,42 @@
+import React from 'react';
+import { View, TouchableHighlight, Text } from 'react-native';
+import { useState, useEffect } from 'react';
+import styles from './styles';
+
+import * as Google from 'expo-google-app-auth';
+import home from '../home';
+
+
+export default function login({navigation}) { 
+  const [ user, setUser ] = useState(null);
+
+  async function signInWithGoogleAsync() {
+		
+		try {
+			const result = await Google.logInAsync({
+				androidClientId: '715902956439-3m0e6e8cfkfm3emfueh5klv8dtl61kod.apps.googleusercontent.com',
+			});
+			if (result.type === 'success') {
+				let { user } = result;
+        setUser(user);
+        navigation.reset({index:0, actions: [navigation.navigate('home', {userInformation: result})],})
+			} 
+
+		} catch (e) {
+			return { error: true };
+		}
+	}
+
+  return (
+    <View style={styles.countdownContainer}>
+      <TouchableHighlight
+        style={styles.countdownButton}
+        activeOpacity={0.6}
+        underlayColor="#4953B8"
+        onPress={() => signInWithGoogleAsync()}
+        >
+        <Text style={styles.buttonText}>Ciclo encerrado</Text>
+        </TouchableHighlight>
+    </View>
+  )
+}

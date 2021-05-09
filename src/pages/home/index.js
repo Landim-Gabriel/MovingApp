@@ -10,13 +10,13 @@ import ChallengeBox from '../../components/ChallengeBox/ChallengeBox';
 import { CountdownProvider } from '../../contexts/CountdownContext';
 
 
-export default function home() {
+export default function home({route, navigation}) {
   return(
     <View style={styles.container}>
       <ExperienceBar />
       <CountdownProvider>
       <View style={styles.profileSection}>
-        <Profile />
+        <Profile user={route.params.userInformation}/>
         <CompletedChallengers />
         <Countdown />
         <ChallengeBox/>
