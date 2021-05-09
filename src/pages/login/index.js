@@ -28,14 +28,14 @@ export default function login({navigation}) {
 	}
 
   return (
-    <View style={styles.countdownContainer}>
+    <View style={styles.loginContainer}>
       <TouchableHighlight
-        style={styles.countdownButton}
+        style={styles.loginButton}
         activeOpacity={0.6}
         underlayColor="#4953B8"
         onPress={() => signInWithGoogleAsync()}
         >
-        <Text style={styles.buttonText}>Ciclo encerrado</Text>
+        <Text style={styles.buttonText}>Entrar com Google</Text>
         </TouchableHighlight>
     </View>
   )

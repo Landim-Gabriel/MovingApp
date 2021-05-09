@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  countdownContainer: {
+  loginContainer: {
     height: 920,
     maxWidth: 900,
     marginTop: 0,
@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
   },
 
-  countdownButton: {
+  loginButton: {
     width: '100%',
     height: 40,
 
