@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { ChallengesContext } from '../../contexts/ChallengesContexts';
 import { CountdownContext } from '../../contexts/CountdownContext';
+import { Audio } from 'expo-av';
 
 import styles from './styles';
 
@@ -20,7 +21,18 @@ export default function Countdown() {
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
+  const [sound, setSound] = React.useState();
 
+  async function playTheSound(){
+    const { sound } = await Audio.Sound.createAsync(require('../../../assets/challengeFailed.mp3'))
+    setSound(sound);
+    await sound.playAsync()
+  }
+
+  function challengeFailed(){
+    resetCountdown()
+    playTheSound()
+  }
   
   return (
     <View>
@@ -52,7 +64,7 @@ export default function Countdown() {
         style={styles.countdownButton}
         activeOpacity={0.6}
         underlayColor="#4953B8"
-        onPress={() => {resetCountdown()}}
+        onPress={() => {challengeFailed()}}
       >
         <Text style={styles.buttonText}>Abandonar ciclo</Text>
       </TouchableHighlight>

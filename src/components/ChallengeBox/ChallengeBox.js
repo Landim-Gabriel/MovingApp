@@ -4,12 +4,20 @@ import { View, Text, Image } from "react-native";
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import { ChallengesContext } from '../../contexts/ChallengesContexts';
 import { CountdownContext } from '../../contexts/CountdownContext';
+import { Audio } from 'expo-av';
 import styles from './styles';
 
 export default function ChallengeBox(){
 
     const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
     const { resetCountdown } = useContext(CountdownContext)
+    const [sound, setSound] = React.useState();
+
+    async function playSounds(){
+        const { sound } = await Audio.Sound.createAsync(require('../../../assets/challengeFailed.mp3'))
+        setSound(sound);
+        await sound.playAsync();
+    }
 
     function handleChallengeSucceeded(){
         completeChallenge()
@@ -19,6 +27,7 @@ export default function ChallengeBox(){
     function handleChallengeFailed(){
         resetChallenge()
         resetCountdown()
+        playSounds()
     }
 
     return(

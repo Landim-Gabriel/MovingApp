@@ -1,6 +1,7 @@
 import React, { createContext } from 'react';
 import { useState } from 'react/cjs/react.development';
 import challenges from '../../challenges.json';
+import { Audio } from 'expo-av';
 
 export const ChallengesContext = createContext({});
 
@@ -12,7 +13,13 @@ export function ChallengesProvider({ children }){
   const [challengesCompleted, setChallengesCompleted] = useState(0);
   const [activeChallenge, setActiveChallenge] = useState(null);
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
+  const [sound, setSound] = React.useState();
 
+  async function playSound(){
+    const { sound } = await Audio.Sound.createAsync(require('../../assets/challengeCompleted.mp3'))
+    setSound(sound)
+    await sound.playAsync()
+  }
 
   function levelUp(){
     setLevel(level + 1);
@@ -46,6 +53,7 @@ export function ChallengesProvider({ children }){
     setCurrentExperience( finalExperience )
     setActiveChallenge( null )
     setChallengesCompleted( challengesCompleted + 1 )
+    playSound()
   }
 
     return(
