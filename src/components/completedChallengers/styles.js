@@ -7,7 +7,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'column',
 
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 12,
     paddingBottom: 16,
 

@@ -20,4 +20,21 @@ export default StyleSheet.create({
     display: 'flex',
     margin: 50,
   },
+  
+  countdownButton: {
+    width: '100%',
+    height: 40,
+
+    backgroundColor: '#5965E0',
+    alignItems: 'center',
+    marginTop: 6,
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+
+  buttonText: {
+    fontSize: 20,
+    color: '#FFF',
+  },  
 });

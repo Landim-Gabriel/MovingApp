@@ -8,7 +8,7 @@ export default StyleSheet.create({
         fontWeight: '500',
         height: '50%',
         color: '#2E384D',
-        marginTop:20,
+        marginTop:10,
         backgroundColor: 'white',
         shadowColor: "#000",
         shadowOffset: {
@@ -34,10 +34,10 @@ export default StyleSheet.create({
 
     },
     levelUp:{
-        marginLeft:30,
+        marginLeft:45,
         resizeMode: "cover",
-        height:150,
-        width:150,
+        height:100,
+        width:100,
         marginTop:1
     },
     textBold:{
@@ -45,13 +45,14 @@ export default StyleSheet.create({
         fontSize:20,
     },
     textP:{
+        paddingHorizontal:12,
         fontSize:15
     },
 
     imageExercise:{
         resizeMode: 'cover',
-        height:150,
-        width:150
+        height:100,
+        width:100
     }, 
     challengerActive:{
         height:'100%',
@@ -60,7 +61,7 @@ export default StyleSheet.create({
     },
     winXP:{
         textAlign: 'center',
-        color: 'blue',
+        color: '#5965E0',
         fontWeight: "600",
         fontSize: 20,
         borderBottomColor: 'grey',
@@ -83,7 +84,7 @@ export default StyleSheet.create({
     },
     itens:{
         flexDirection: 'column',
-        padding:20
+        padding:20,
     },
 
     challengeFailedButton:{

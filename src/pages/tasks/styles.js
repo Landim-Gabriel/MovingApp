@@ -1,19 +1,27 @@
 import { StyleSheet } from 'react-native'
+import Constants from 'expo-constants'
 
 export default StyleSheet.create({
-  loginContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  container: {
+    height: 920,
+    maxWidth: 900,
+    marginTop: 0,
+    marginBottom: 'auto',
+    paddingTop: 40,
+    paddingBottom: 32,
+
+    display: 'flex',
+    flexDirection: 'column',
   },
 
-  loginButton: {
-    width: '100%',
+  backButton: {
+    width: '30%',
     height: 40,
+    margin: 10,
 
     backgroundColor: '#5965E0',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: 6,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 5,

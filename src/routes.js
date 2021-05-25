@@ -5,7 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 const AppStack = createStackNavigator();
 
 import home from './pages/home';
-import login from './pages/login'
+import login from './pages/login';
+import tasks from './pages/tasks';
 
 export default function Routes() {
   return (
@@ -14,6 +15,7 @@ export default function Routes() {
       <AppStack.Navigator screenOptions={{ headerShown: false }} lazy={true}>
         <AppStack.Screen name='login' component={login} options={{unmountOnBlur:true}} />
         <AppStack.Screen name='home' component={home} options={{unmountOnBlur:true}} />
+        <AppStack.Screen name='tasks' component={tasks} options={{unmountOnBlur:true}} />
 
       </AppStack.Navigator>
 

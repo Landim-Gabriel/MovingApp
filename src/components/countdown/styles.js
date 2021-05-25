@@ -49,7 +49,7 @@ export default StyleSheet.create({
 
     backgroundColor: '#5965E0',
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: 10,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 5,

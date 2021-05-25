@@ -39,7 +39,7 @@ export default function ChallengeBox(){
                         <Image 
                             style={styles.imageExercise}
                             source={require('../../../icons/exercise.png')}/>
-                        <Text style={styles.textBold}>Novo desafio</Text>
+                        <Text style={styles.textBold}>Novo desafio!</Text>
                         <Text style={styles.textP}>{activeChallenge.description}</Text>
                     </View>
                     <View style={styles.footer}>
