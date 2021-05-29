@@ -3,13 +3,13 @@ import {TouchableOpacity, View, Text, TextInput} from 'react-native';
 import styles from './styles'
 
 export default function TodoInput(props){
-    const [text, setText] = useState(" Digite sua tarefa");
+    const [text, setText] = useState(null);
 
     return(
         <View style={styles.textInputView}>
             <TextInput
                 style={styles.input}
-                onChange={text=>setText(text)}
+                onChangeText={text=>setText(text)}
             />
             <TouchableOpacity
                 style={styles.inputButton}
