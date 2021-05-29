@@ -10,7 +10,6 @@ export default function TodoInput(props){
             <TextInput
                 style={styles.input}
                 onChange={text=>setText(text)}
-                value={text}
             />
             <TouchableOpacity
                 style={styles.inputButton}
