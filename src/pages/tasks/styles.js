@@ -30,5 +30,36 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: '#FFF',
-  },  
+  },
+  addTaskButton:{
+    margin:10,
+    width: '95%',
+    height: 40,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    display: 'flex',
+    borderRadius: 5,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#5965E0', 
+  },
+  addButtonText:{
+    fontSize: 20,
+    color: '#000000'
+  },
+  itens:{
+    backgroundColor:'#5965E0',
+    paddingVertical: 8,
+    width: '100%',
+    padding: 5,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  taskText:{
+    fontSize:18,
+    color: '#FFFFFF'
+  }
 })
