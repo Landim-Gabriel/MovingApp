@@ -6,14 +6,17 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+
     input:{
         marginVertical:10,
         flex:1, 
         height:50,
         borderColor: '#212121',
         borderWidth: 1,
-        borderRadius: 8
+        borderRadius: 8,
+        
     },
+
     inputButton:{
         marginVertical:10,
         height:50,
@@ -24,6 +27,10 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius:8
+    },
+
+    textBtn: {
+        color: '#fff',
+        fontWeight: 'bold'
     }
-    
 })

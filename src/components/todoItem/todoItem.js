@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
+import styles from './styles'
 
 export default function TodoItem(props) {
 
@@ -14,17 +15,21 @@ export default function TodoItem(props) {
     return (
         <TouchableOpacity
             onPress={() => props.completeFunction()}
-            style={{paddingVertical: 8, flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={[{fontSize: 18}, style]}>{props.item.text}</Text>
-
+            style={styles.tarefas}>
+            <Text style={[{fontSize: 18}, style]}>{props.item.descricao}</Text>
+            <View style={styles.botoes}>
             <TouchableOpacity
-                style={{padding: 8, backgroundColor: '#212121', justifyContent: 'center', alignItems: 'center', borderRadius: 8}}
-                onPress={() => props.deleteFunction()}>
-
-                <Text style={{color: '#fafafa'}}>X</Text>
-
+                style={styles.taskCompleted}
+                onPress={() => props.completeFunction()}>
+                <Text style={{color: '#fafafa', fontWeight: 'bold'}}>✓</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity
+                style={styles.taskFailed}
+                onPress={() => props.deleteFunction()}>
+                <Text style={{color: '#fafafa', fontWeight: 'bold'}}>X</Text>
+            </TouchableOpacity>
+            </View>
         </TouchableOpacity>
     );
 }

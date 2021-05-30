@@ -4,11 +4,21 @@ import { useState, useEffect } from 'react';
 import styles from './styles';
 
 import * as Google from 'expo-google-app-auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import home from '../home';
 
 
 export default function login({navigation}) { 
   const [ user, setUser ] = useState(null);
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@moving:google_id', value)
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async function signInWithGoogleAsync() {
 		
@@ -19,6 +29,7 @@ export default function login({navigation}) {
 			if (result.type === 'success') {
 				let { user } = result;
         setUser(user);
+        storeData(user.id)
         navigation.reset({index:0, actions: [navigation.navigate('home', {userInformation: result})],})
 			} 
 

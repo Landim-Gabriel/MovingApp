@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableHighlight, Text } from 'react-native';
+import { View, TouchableHighlight, Text, SafeAreaView, ScrollView } from 'react-native';
 
 import styles from './styles';
 import ExperienceBar from '../../components/experienceBar/ExperienceBar';
@@ -22,6 +22,7 @@ export default function home({ route, navigation }) {
               style={styles.countdownButton}
               activeOpacity={0.6}
               underlayColor="#4953B8"
+              user={route.params.userInformation}
               onPress={() => navigation.navigate('tasks')}
             >
               <Text style={styles.buttonText}>Tarefas</Text>

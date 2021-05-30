@@ -3,19 +3,18 @@ import Constants from 'expo-constants'
 
 export default StyleSheet.create({
   container: {
-    height: 920,
+    height: "100%",
     maxWidth: 900,
     marginTop: 0,
     marginBottom: 'auto',
     paddingTop: 40,
-    paddingBottom: 32,
 
     display: 'flex',
     flexDirection: 'column',
   },
 
   backButton: {
-    width: '30%',
+    width: '30%', 
     height: 40,
     margin: 10,
 
@@ -60,6 +59,45 @@ export default StyleSheet.create({
   },
   taskText:{
     fontSize:18,
-    color: '#FFFFFF'
+    color: '#FFFFFF',
+  },
+  showFailedTask:{
+    flexDirection: 'row',
+  },
+  taskView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingRight:5,
+    paddingHorizontal: 10
+  },
+  taskTotal: {
+    backgroundColor: '#5965E0',
+    paddingHorizontal: 10,
+    width: 120,
+    borderTopLeftRadius:5,
+    borderBottomLeftRadius: 5
+  },
+  taskCompleted: {
+    backgroundColor: '#008000',
+    paddingHorizontal: 10,
+    width: 120,
+    
+  },
+  taskFailed: {
+    backgroundColor: '#FF0000',
+    paddingHorizontal: 10,
+    width: 120,
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
+    textAlign: 'center'
+
+  },
+  taskTable: {
+    textAlign: 'center',
+    color: '#fff',
+  },
+  taskTableTop: {
+    color: '#fff',
+    textAlign: 'center'
   }
 })

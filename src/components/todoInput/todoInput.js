@@ -4,6 +4,7 @@ import styles from './styles'
 
 export default function TodoInput(props){
     const [text, setText] = useState(null);
+    const [nullText, setNullText] = useState('')
 
     return(
         <View style={styles.textInputView}>
@@ -15,7 +16,7 @@ export default function TodoInput(props){
                 style={styles.inputButton}
                 onPress={()=>props.onPress(text)}
             >
-                <Text>Add</Text>
+                <Text style={styles.textBtn}>Add</Text>
             </TouchableOpacity>
         </View>
     )

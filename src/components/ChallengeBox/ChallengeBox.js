@@ -67,7 +67,7 @@ export default function ChallengeBox(){
                 </View>
             ) : (
                 <View style={styles.challengeNotActive}>
-                    <Text style={styles.textBold}>Finalize um ciclo para receber um desafio</Text>
+                    <Text style={styles.textBold}>Finalize um ciclo para receber um desafio.</Text>
                     <View>
                         <Image 
                             style={styles.levelUp}

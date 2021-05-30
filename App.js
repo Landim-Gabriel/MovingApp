@@ -5,8 +5,8 @@ import { ChallengesProvider } from './src/contexts/ChallengesContexts';
 export default function App() {
 
   return (
-    <ChallengesProvider>
-      <Routes />
-    </ChallengesProvider>
+      <ChallengesProvider>
+        <Routes />
+      </ChallengesProvider>
   );
 }

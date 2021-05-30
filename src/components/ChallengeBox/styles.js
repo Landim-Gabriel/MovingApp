@@ -31,22 +31,24 @@ export default StyleSheet.create({
         alignItems: 'center',
         maxWidth: '70%',
         marginTop: 3
-
     },
     levelUp:{
-        marginLeft:45,
         resizeMode: "cover",
         height:100,
         width:100,
-        marginTop:1
+        marginTop:1,
+        justifyContent: 'center'
     },
     textBold:{
-        display: 'flex',
+        color: "#000",
         fontSize:20,
+        textAlign: 'center'
     },
     textP:{
+        color: "#000",
         paddingHorizontal:12,
-        fontSize:15
+        fontSize:15,
+        textAlign: 'center'
     },
 
     imageExercise:{

@@ -3,8 +3,8 @@ import Constants from 'expo-constants'
 
 export default StyleSheet.create({
   container: {
-    height: 920,
-    maxWidth: 900,
+    height: "auto",
+    flex: 1,
     marginTop: 0,
     marginBottom: 'auto',
     paddingTop: 40,
