@@ -33,6 +33,7 @@ export default function tasks({ navigation, props }) {
             })
         }
         getMesas();
+        completeTotal()
     }, [])
 
     const [todoItems, setTodoItems] = useState([]);
@@ -40,23 +41,61 @@ export default function tasks({ navigation, props }) {
     const [completedTask, setCompletedTask] = useState(0);
     const [allTasks, setAllTasks] = useState(0);
 
-    function addTodoItem(_text) {
-        setTodoItems([...todoItems, { text: _text, completed: false }]);
-        setAllTasks(allTasks + 1)
+    async function addTodoItem(_text) {
+        let userId = await getData()
+        Api.post('api/tarefas/create/', { descricao: _text, usuario: userId }).then(response => {
+            let tarefas = mesas;
+            setMesas(tarefas);
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        await Api.get(`api/tarefas/${userId}`).then(response => {
+            setMesas(response.data);
+        }).catch((error) => {
+            console.log(error)
+        })
+        completeTotal()
     }
 
-    function deleteTodoItem(item) {
-        let tempArr = [...todoItems];
-        tempArr.splice(item, 1);
-        setTodoItems(tempArr)
-        setFailedTask(failedTask + 1)
+    async function deleteTodoItem(item) {
+        Api.delete(`api/tarefas/${item}/delete/`).then(response => {
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        let userId = await getData()
+        await Api.get(`api/tarefas/${userId}`).then(response => {
+            setMesas(response.data);
+        }).catch((error) => {
+            console.log(error)
+        })
+        completeTotal()
     }
 
-    function completeTodoItem(item) {
-        let tempArr = [...todoItems];
-        tempArr.splice(item, 1);
-        setTodoItems(tempArr)
-        setCompletedTask(completedTask + 1)
+    async function completeTodoItem(item) {
+        Api.patch(`api/tarefas/${item}/complete/`).then(response => {
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        let userId = await getData()
+        await Api.get(`api/tarefas/${userId}`).then(response => {
+            setMesas(response.data);
+        }).catch((error) => {
+            console.log(error)
+        })
+        completeTotal()
+    }
+
+    function completeTotal() {
+        let cont = 0
+        mesas.map((mesas) => {
+            if (mesas.complete) {
+                cont += 1
+            }
+        });
+        setCompletedTask(cont)
     }
 
     return (
@@ -73,7 +112,7 @@ export default function tasks({ navigation, props }) {
                 <View style={styles.taskView}>
                     <View style={styles.taskTotal}>
                         <Text style={styles.taskTableTop}>Total de tasks</Text>
-                        <Text style={styles.taskTable}>{allTasks}</Text>
+                        <Text style={styles.taskTable}>{mesas.length}</Text>
                     </View>
                     <View style={styles.taskCompleted}>
                         <Text style={styles.taskTableTop}>Completas</Text>
@@ -81,7 +120,7 @@ export default function tasks({ navigation, props }) {
                     </View>
                     <View style={styles.taskFailed}>
                         <Text style={styles.taskTableTop}>Incompletas</Text>
-                        <Text style={styles.taskTable}>{failedTask}</Text>
+                        <Text style={styles.taskTable}>{(mesas.length - completedTask)}</Text>
                     </View>
                 </View>
                 <SafeAreaView style={{ padding: 16, justifyContent: 'space-between', flex: 1 }}>
@@ -93,6 +132,7 @@ export default function tasks({ navigation, props }) {
                             return (
                                 <TodoItem
                                     item={item}
+                                    cor={item.complete}
                                     deleteFunction={() => deleteTodoItem(item.id)}
                                     completeFunction={() => completeTodoItem(item.id)}
                                 />

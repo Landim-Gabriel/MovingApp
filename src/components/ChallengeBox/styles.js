@@ -32,12 +32,15 @@ export default StyleSheet.create({
         maxWidth: '70%',
         marginTop: 3
     },
+    containetLevelUp: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     levelUp:{
         resizeMode: "cover",
         height:100,
         width:100,
         marginTop:1,
-        justifyContent: 'center'
     },
     textBold:{
         color: "#000",
