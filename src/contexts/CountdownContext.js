@@ -5,7 +5,7 @@ export const CountdownContext = createContext({})
 let countdownTimeout;
 
 export function CountdownProvider({children}){
-    const { startNewChallenge } = useContext(ChallengesContext);
+    const { startNewChallenge, desafios, setDesafios, challengesFailed, setChallengesFailed } = useContext(ChallengesContext);
 
     const [time, setTime] = useState( 0.1 * 60 );
     const [isActive, setActive] = useState(false);
@@ -16,6 +16,7 @@ export function CountdownProvider({children}){
 
     function startCountdown() {   
         setActive(true);
+        setDesafios(desafios + 1)
       }
     
       function resetCountdown(){

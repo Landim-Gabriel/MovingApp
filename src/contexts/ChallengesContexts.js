@@ -14,6 +14,9 @@ export function ChallengesProvider({ children }){
   const [activeChallenge, setActiveChallenge] = useState(null);
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2)
   const [sound, setSound] = React.useState();
+  const [desafios, setDesafios] = useState(0);
+  const [challengesFailed, setChallengesFailed] = useState(0);
+
 
   async function playSound(){
     const { sound } = await Audio.Sound.createAsync(require('../../assets/challengeCompleted.mp3'))
@@ -49,7 +52,6 @@ export function ChallengesProvider({ children }){
       finalExperience = finalExperience - experienceToNextLevel
       levelUp()
     }
-
     setCurrentExperience( finalExperience )
     setActiveChallenge( null )
     setChallengesCompleted( challengesCompleted + 1 )
@@ -67,7 +69,11 @@ export function ChallengesProvider({ children }){
              activeChallenge,
              resetChallenge,
              experienceToNextLevel,
-             completeChallenge
+             completeChallenge,
+             desafios,
+             setDesafios,
+             challengesFailed,
+             setChallengesFailed
           }}
         >
             {children}

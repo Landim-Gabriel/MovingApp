@@ -9,7 +9,7 @@ import styles from './styles';
 
 export default function ChallengeBox(){
 
-    const { activeChallenge, resetChallenge, completeChallenge } = useContext(ChallengesContext);
+    const { activeChallenge, resetChallenge, completeChallenge, desafios, setDesafios, challengesFailed, setChallengesFailed  } = useContext(ChallengesContext);
     const { resetCountdown } = useContext(CountdownContext)
     const [sound, setSound] = React.useState();
 
@@ -25,6 +25,7 @@ export default function ChallengeBox(){
     }
 
     function handleChallengeFailed(){
+        setChallengesFailed(challengesFailed + 1)
         resetChallenge()
         resetCountdown()
         playSounds()

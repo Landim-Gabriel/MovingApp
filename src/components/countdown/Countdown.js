@@ -19,6 +19,8 @@ export default function Countdown() {
           resetCountdown
         } = useContext(CountdownContext)
 
+  const { desafios, setDesafios, challengesFailed, setChallengesFailed } = useContext(ChallengesContext);
+
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
   const [sound, setSound] = React.useState();
@@ -30,6 +32,7 @@ export default function Countdown() {
   }
 
   function challengeFailed(){
+    setChallengesFailed(challengeFailed + 1)
     resetCountdown()
     playTheSound()
   }

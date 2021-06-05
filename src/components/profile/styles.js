@@ -27,4 +27,8 @@ export default StyleSheet.create({
     fontSize: 18,
     marginTop: 8,
   },
+  aproveitamento:{
+    fontSize: 18
+    
+  }
 });
